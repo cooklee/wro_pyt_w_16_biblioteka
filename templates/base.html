@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .main {
+        display: flex;
+        align-content: space-evenly;
+        flex-direction: column;
+    }
+
+    .header {
+        min-height: 100px;
+        background-color: blanchedalmond;
+         display: flex;
+        justify-content: space-around;
+    }
+
+    .content {
+        min-height: 500px;
+    }
+
+    .footer {
+        min-height: 100px;
+        background-color: blanchedalmond;
+    }
+
+    .links {
+        display: flex;
+        list-style-type: none;
+    }
+    .links li{
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+</style>
+<body class="main">
+<div class="header">
+    <div>
+        <ul class="links">
+            <li><a href="/dodaj_osobe/">
+                <button>Dodaj Osobe</button>
+            </a></li>
+            <li><a href="/osoby/">
+                <button>Wyswietl osoby</button>
+            </a></li>
+        </ul>
+    </div>
+</div>
+<div class="content">
+    {% block zawartosc %}
+        sdfsdf
+    {% endblock %}
+
+
+</div>
+<div class="footer">stopka</div>
+
+</body>
+</html>

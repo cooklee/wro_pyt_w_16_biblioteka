@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block zawartosc %}
+persons - <br>
+<ul>
+    {% for p in persons %}
+        <li><a href="/osoby/{{ p.id }}/">{{ p.id }} {{ p.first_name }} {{ p.last_name }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

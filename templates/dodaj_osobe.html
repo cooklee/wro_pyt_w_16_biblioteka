@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block zawartosc %}
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="first_name" placeholder="imie">
+    <input type="text" name="last_name" placeholder="nazwisko">
+    <input type="submit">
+</form>
+{% endblock %}
