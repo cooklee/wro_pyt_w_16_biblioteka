@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 
 from polka import views
+from accounts import views as account_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +28,13 @@ urlpatterns = [
     path("dodaj_osobe/", views.dodaj_osobe),
     path('osoby/', views.wyswietlanie_osob),
     path('osoby/<int:id>/', views.osoba),
+    path('dodaj_ksiazke/', views.dodaj_ksiazke),
+    path('ksiazki/', views.ksiazki),
+    path('dodaj_wydawce/', views.AddPublisher),
+    path('wydawcy/', views.show_publishers),
+    path('login/', account_view.login),
+    path('logout/', account_view.logout),
+    path("add_book_to_cart/<int:book_id>/", views.add_book_to_cart),
+    path('show_cart/', views.show_cart),
     path('', views.index)
 ]

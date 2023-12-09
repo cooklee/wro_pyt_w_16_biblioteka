@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block zawartosc %}
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="title">
+        <select name="author">
+            {% for autor in authors %}
+            <option value="{{ autor.id }}">{{ autor }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit">
+    </form>
+{% endblock %}

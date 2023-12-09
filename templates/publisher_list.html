@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block zawartosc %}
+    <form>
+    <input name="name" type="text" placeholder="Nazwa">
+    <input type="text" name="city" placeholder="Miasto">
+    <input type="submit">
+    </form>
+    <ul>
+        {% for publisher in publishers %}
+            <li>{{ publisher }}</li>
+        {% endfor   %}
+    </ul>
+{% endblock %}

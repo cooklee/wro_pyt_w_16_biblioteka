@@ -1,11 +1,18 @@
+from django.contrib import messages
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
-from polka.models import Person
+from polka.models import Person, Book, Publisher, Cart
+
 
 def index(request):
-    return render(request, 'base.html')
+    user_id = request.session.get('user_id')
+    if user_id is not None:
+        user = Person.objects.get(pk=user_id)
+    else:
+        user = None
+    return render(request, 'base.html', {'osoba':user})
 
 def hello_django(request):
     return HttpResponse("Witaj Django")
@@ -48,3 +55,70 @@ def wyswietlanie_osob(request):
 def osoba(request, id):
     o = Person.objects.get(id=id)
     return render(request, 'o.html', {'osoba':o})
+
+
+def dodaj_ksiazke(request):
+    if request.method == "GET":
+        authors = Person.objects.all()
+        response = render(request, 'add_book.html', {'authors':authors})
+        return response
+
+    title = request.POST.get('title')
+    author_id = request.POST.get('author')
+    autor = Person(id=author_id)
+    b = Book(title=title, author=autor)
+    b.save()
+    return redirect('/ksiazki/')
+
+def ksiazki(request):
+    books = Book.objects.all()
+    authors = Person.objects.all()
+    author_id = request.GET.get('author', '')
+    title = request.GET.get('title', '')
+    if author_id != '':
+        books =books.filter(author_id=author_id)
+    books = books.filter(title__icontains=title)
+    return render(request, 'books.html', {'books':books, 'authors':authors})
+
+
+def AddPublisher(request):
+
+    if request.method == 'POST':
+        name = request.POST['name']
+        city = request.POST['city']
+        p = Publisher(name=name, city=city)
+        p.save()
+
+    return render(request, 'add_publisher.html')
+
+def show_publishers(request):
+    publishers = Publisher.objects.all()
+    name = request.GET.get('name', '')
+    city = request.GET.get('city', '')
+    print(city, name)
+    if name != "":
+        publishers = publishers.filter(name__icontains=name)
+    if city != "":
+        publishers = publishers.filter(city__icontains=city)
+
+    return render(request, 'publisher_list.html', {'publishers':publishers})
+
+
+def add_book_to_cart(request,book_id):
+    user_id = request.session.get('user_id')
+    if user_id is None:
+        return redirect(f'/login/?next=/add_book_to_cart/{book_id}')
+    book = Book.objects.get(pk=book_id)
+    user = Person.objects.get(pk=user_id)
+    cart, created = Cart.objects.get_or_create(owner=user)
+    cart.books.add(book)
+    messages.add_message(request, messages.INFO,f"udalo sie dodać książke {book.title} do koszyka")
+    return redirect('/ksiazki/')
+
+
+def show_cart(request):
+    user_id = request.session.get('user_id')
+    if user_id is None:
+        return redirect(f'/login/?next=/cart/')
+    cart = Cart.objects.get(owner_id=user_id)
+    return render(request, 'cart_list.html', {'cart':cart})

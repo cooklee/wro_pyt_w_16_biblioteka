@@ -1,3 +1,8 @@
 to jest:<br>
 imie : {{ osoba.first_name }}<br>
 nazwisko : {{ osoba.last_name }}<br>
+<ul>
+    {% for book in osoba.book_set.all %}
+        <li>{{ book.title }}</li>
+    {% endfor %}
+</ul>
