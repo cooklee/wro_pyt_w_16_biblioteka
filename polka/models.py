@@ -31,8 +31,7 @@ class Publisher(models.Model):
 
 class Cart(models.Model):
     owner = models.OneToOneField(Person, on_delete=models.CASCADE)
-    books = models.ManyToManyField(Book)
-    # books2 = models.ManyToManyField(Book, through='CartItem')
+    books = models.ManyToManyField(Book, through='CartItem')
 
 
 class CartItem(models.Model):

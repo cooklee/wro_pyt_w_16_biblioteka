@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block zawartosc %}
     <ul>
-    {% for book in cart.books.all %}
-        <li>{{ book }}
+    {% for cartitem in cart.cartitem_set.all %}
+        <li>{{ cartitem.book }} - {{ cartitem.amount }}
         <a href="/remove_book_from_cart/{{ book.id }}/">-</a>
         </li>
     {% endfor %}
