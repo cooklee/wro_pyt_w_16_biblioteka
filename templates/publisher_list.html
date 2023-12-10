@@ -7,7 +7,7 @@
     </form>
     <ul>
         {% for publisher in publishers %}
-            <li>{{ publisher }}</li>
+            <li><a href="{% url 'update_publisher' publisher.id %}"> {{ publisher }}</a></li>
         {% endfor   %}
     </ul>
 {% endblock %}

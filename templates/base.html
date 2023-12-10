@@ -44,31 +44,31 @@
 <div class="header">
     <div>
         <ul class="links">
-            <li><a href="/dodaj_osobe/">
+            <li><a href="{% url 'add_person' %}">
                 <button>Dodaj Osobe</button>
             </a></li>
-            <li><a href="/osoby/">
+            <li><a href="{% url 'show_person' %}">
                 <button>Wyswietl osoby</button>
             </a></li>
-            <li><a href="/dodaj_ksiazke/">
+            <li><a href="{% url 'add_book' %}">
                 <button>Dodaj Książke</button>
             </a></li>
-            <li><a href="/ksiazki/">
+            <li><a href="{% url 'show_books' %}">
                 <button>Książki</button>
             </a></li>
-             <li><a href="/dodaj_wydawce/">
+             <li><a href="{% url 'add_publisher' %}">
                 <button>Dodaj wydawce</button>
             </a></li>
-             <li><a href="/wydawcy/">
+             <li><a href="{% url 'show_publisher' %}">
                 <button>wydawcy</button>
             </a></li>
-             <li><a href="/show_cart/">
+             <li><a href="{% url 'show_card' %}">
                 <button>koszyk</button>
             </a></li>
-             <li><a href="/login/">
+             <li><a href="{% url 'login' %}">
                 <button>login</button>
             </a></li>
-             <li><a href="/logout/">
+             <li><a href="{% url 'logout' %}">
                 <button>logout</button>
             </a></li>
         </ul>

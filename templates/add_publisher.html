@@ -2,8 +2,8 @@
 {% block zawartosc %}
 <form method="post">
     {% csrf_token %}
-    <input type="text" name="name" placeholder="Nazwa"><br>
-    <input type="text" name="city" placeholder="Miasto"><br>
+    <input type="text" name="name" value='{{ publisher.name }}' placeholder="Nazwa"><br>
+    <input type="text" name="city" value="{{ publisher.city }}" placeholder="Miasto"><br>
     <input type="submit">
 </form>
 {% endblock %}

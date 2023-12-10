@@ -22,11 +22,28 @@ def loginView(request):
         password = request.POST.get('password')
         user = authenticate(username, password)
         if user is None:
-            return redirect('/login/')
+            return redirect('login')
         login(request, user)
         return redirect(url_redirect)
+
+def login_by_cookiee(request):
+    request.COOKIES['user_id']
+    if request.method == "GET":
+        return render(request, 'loginForm.html')
+    else:
+        url_redirect = request.GET.get('next', '/')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username, password)
+        if user is None:
+            return redirect('login')
+        # login(request, user)
+        httpresponse = redirect(url_redirect)
+        httpresponse.set_cookie('user_id', user.id)
+        return httpresponse
+
 
 def logout(request):
     if 'user_id' in request.session:
         del request.session['user_id']
-    return redirect('/')
+    return redirect('index')
