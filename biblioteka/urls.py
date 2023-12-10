@@ -32,7 +32,7 @@ urlpatterns = [
     path('ksiazki/', views.ksiazki),
     path('dodaj_wydawce/', views.AddPublisher),
     path('wydawcy/', views.show_publishers),
-    path('login/', account_view.login),
+    path('login/', account_view.loginView),
     path('logout/', account_view.logout),
     path("add_book_to_cart/<int:book_id>/", views.add_book_to_cart),
     path('show_cart/', views.show_cart),
